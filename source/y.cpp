@@ -1,6 +1,6 @@
 #include "mustdie.h"
-void runhellobox(){
-	MessageBox(NULL, TEXT("Hello, MustDie!"), TEXT("HelloMsg"), 0);
+int runhellobox(){
+	return MessageBox(NULL, TEXT("Hello, MustDie! do you want us to check your display size?"), TEXT("HelloMsg"), MB_OKCANCEL);
 }
 
 int CDECL MessageBoxPrintf (TCHAR * szCaption, TCHAR * szFormat, ...)
