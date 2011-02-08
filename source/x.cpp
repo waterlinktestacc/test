@@ -1,7 +1,10 @@
 #include "mustdie.h"
 int runhellobox();
 int CDECL MessageBoxPrintf (TCHAR * szCaption, TCHAR * szFormat, ...);
+void debugmsg(char * s, int level);
+void configreader(char * fname);
 int _start(HINSTANCE hInstance, HINSTANCE, PSTR szCmdLine, int iCmdShow){
+	configreader("settings.cfg");
 while (1){
      int cxScreen, cyScreen ;
 
