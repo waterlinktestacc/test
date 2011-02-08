@@ -1,4 +1,4 @@
-#include "mustdie.h"
+#include "mustdie.cpp"
 int runhellobox(){
 	return MessageBox(NULL, TEXT("Hello, MustDie! do you want us to check your display size?"), TEXT("HelloMsg"), MB_OKCANCEL);
 }

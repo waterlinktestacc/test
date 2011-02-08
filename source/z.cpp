@@ -1,7 +1,10 @@
 #include <cstdio>
 
+void debugmsg(char * s, int level);
+
 struct config_t{
 	int debug_level;
+	FILE * logfile;
 } config;
 
 /* 
@@ -14,21 +17,30 @@ struct config_t{
  *			5	ultra-verbose
  */
 
-void debugmsg(char * s, int level){
-	printf("debug message with level %d: %s\n", level, s);
-}
-
-void configreader(char * fname){
-	FILE * fconfig = fopen(fname, "rt");
+int configreader(FILE *& logfile, char * fname){
+	config.logfile = logfile;
+	FILE * fconfig;
+	fconfig = fopen(fname, "rt");
 	if (!fconfig){
-		freopen(fname, "wt", fconfig);
+		fconfig = fopen(fname, "wt");
+		if (!fconfig){
+			printf("CRITICAL: can't access config file %s (non for r, non fo w)\n", fname);
+			return 1;
+		}
 		fprintf(fconfig, "1\n");
 		config.debug_level = 2;
 		fflush(fconfig);
 		fclose(fconfig);
 		debugmsg("configreader: warning: no config file, creating default config file", 2);
-		return;
+		return 0;
 	}
 	fscanf(fconfig, "%d", &(config.debug_level));
 	fclose(fconfig);
+	return 0;
 }
+
+void debugmsg(char * s, int level){
+	if (config.debug_level >= level)
+		fprintf(config.logfile, "debug %d: %s\n", level, s);
+}
+
