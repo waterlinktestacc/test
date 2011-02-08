@@ -1,4 +1,4 @@
 #include <cstdio>
-void debugmsg(char * s, int level){
-	fprintf(stderr, "debug %d: %s\n", s, level);
+void debugmsg(FILE *& ferr, char * s, int level){
+	fprintf(ferr, "debug %d: %s\n", level, s);
 }
