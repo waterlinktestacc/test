@@ -4,7 +4,7 @@ LDFLAGS=
 SOURCEPATH=source/
 LIBPATH=lib/
 BINPATH=bin/
-SOURCES=source/x.cpp source/y.cpp source/mustdie.h
+SOURCES=source/x.cpp source/y.cpp source/mustdie.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=bin/hello.exe
 
