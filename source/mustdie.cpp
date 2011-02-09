@@ -34,4 +34,4 @@ using namespace std;
 #define ipar pair < int, int >
 #define itriad pair < int, par >
 #define iquad pair < par, par >
-
+//bga!
